@@ -71,7 +71,7 @@ function App() {
       newSearchHistory[name] = undefined;
       setSearchHistory(newSearchHistory);
 
-      saveToLocalStorage(newSearchHistory);
+      saveSearchHistoryToLocalStorage(newSearchHistory);
     }
   }
 
