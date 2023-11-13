@@ -198,7 +198,12 @@ function App() {
             <h2>Search History</h2>
 
             <ul id='search-history-list' className='mt-6 flex flex-col gap-4'>
-              {SearchHistoryList}
+              {
+                SearchHistoryList.length ?
+                  SearchHistoryList
+                  : <p className='text-center text-2xl'>No Record</p>
+              }
+
             </ul>
           </section>
         </main>
