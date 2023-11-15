@@ -29,7 +29,6 @@ function App() {
   const [searchText, setSearchText] = useState(query);
   const [weatherData, setWeatherData] = useState({});
   const [searchHistory, setSearchHistory] = useState(savedSearchHistory);
-  const [isDay, setIsDay] = useState(true);
 
   let hasCalled = false; // react in dev mode will call useEffect twice
   useEffect(() => {
@@ -42,7 +41,7 @@ function App() {
     }
   }, []);
 
-  const img = isDay ? sunImg : cloudImg;
+  const img = weatherData.sys && checkIsDay(weatherData) ? sunImg : cloudImg;
 
   const locationName = weatherData.sys ? generateLocationName(weatherData.name, weatherData.sys.country) : '';
   const dateFormatted = weatherData.dt
@@ -90,7 +89,6 @@ function App() {
         const data = await callWeatherAPI(searchText);
         if (data.cod === statusCodes.ok) {
           addToSearchHistory(data);
-          setIsDay(checkIsDay(data))
           setSearchText('');
         }
         setWeatherData(data);
